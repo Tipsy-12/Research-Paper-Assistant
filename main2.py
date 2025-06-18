@@ -14,7 +14,7 @@ from unstructured.partition.pdf import partition_pdf
 
 # === Config ===
 os.environ["GOOGLE_API_KEY"] = "your-api-key"  # Replace or use dotenv
-file_path = "docs/NIPS-2017-attention-is-all-you-need-Paper.pdf"
+file_path = "NIPS-2017-attention-is-all-you-need-Paper.pdf"
 id_key = "doc_id"
 
 # === Load PDF and Chunk ===
