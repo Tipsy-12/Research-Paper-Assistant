@@ -13,7 +13,7 @@ from langchain.retrievers.multi_vector import MultiVectorRetriever
 from unstructured.partition.pdf import partition_pdf
 
 # === Config ===
-os.environ["GOOGLE_API_KEY"] = "your-api-key"  # Replace or use dotenv
+os.environ["GOOGLE_API_KEY"] = "AIzaSyDcyPkDBHE2HaNe9Hn_HZgu-RhBywWLSl0"  # Replace or use dotenv
 file_path = "NIPS-2017-attention-is-all-you-need-Paper.pdf"
 id_key = "doc_id"
 
