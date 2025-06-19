@@ -22,6 +22,8 @@ git clone https://github.com/Tipsy-12/Intelligent-Paper-Assistant.git
 cd Intelligent-Paper-Assistant
 
 ### 2. ✅ Create and activate a virtual environment
+bash
+
 python -m venv venv
 source venv/bin/activate  # On Windows use venv\Scripts\activate
 
