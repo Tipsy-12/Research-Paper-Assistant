@@ -65,21 +65,27 @@ python main.py
 Please make sure your .env is set, and PDF_PATH in config.py points to your target PDF.
 
 ### Tech Stack
-Component	Library/Tool
+Component	      Library/Tool
 
-LLM	Gemini 1.5 Flash via langchain-google-genai
+LLM	              Gemini 1.5 Flash via langchain-google-genai
 
-OCR + Layout	Unstructured + Tesseract + Poppler
+OCR + Layout	  Unstructured + Tesseract + Poppler
 
-Vector Search	DocArrayInMemorySearch + LangChain
+Vector Search	  DocArrayInMemorySearch + LangChain
 
-Embeddings	GoogleGenerativeAIEmbeddings
+Embeddings	      GoogleGenerativeAIEmbeddings
 
-PDF Processing	pdf2image, pypdf, unstructured
+PDF Processing	  pdf2image, pypdf, unstructured
 
-Summarisation	LangChain PromptTemplates + Gemini
+Summarisation	  LangChain PromptTemplates + Gemini
 
- 📁 Project Structure
+
+### Example Use Case
+"What is positional encoding?"
+
+The assistant extracts relevant content from both text and images (e.g., equations, graphs), providing a concise, accurate summary using Gemini Flash.
+
+ ### 📁 Project Structure
 ```bash
 
 ├── main.py
