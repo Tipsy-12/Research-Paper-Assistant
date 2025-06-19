@@ -1,17 +1,22 @@
 import os
 import tempfile
+import uuid
+import base64
 import streamlit as st
-from unstructured.partition.pdf import partition_pdf
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.messages import HumanMessage
-from langchain_google_genai import ChatGoogleGenerativeAI
-import base64
+from langchain_core.runnables import RunnableLambda, RunnablePassthrough
+from langchain.schema.document import Document
+from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
+from langchain_community.vectorstores import DocArrayInMemorySearch
+from langchain.storage import InMemoryStore
+from langchain.retrievers.multi_vector import MultiVectorRetriever
+from unstructured.partition.pdf import partition_pdf
 
-# === API KEY SETUP ===
-os.environ["GOOGLE_API_KEY"] = "AIzaSyDcyPkDBHE2HaNe9Hn_HZgu-RhBywWLSl0"  # Replace this or use dotenv
+# === Config ===
+os.environ["GOOGLE_API_KEY"] = "AIzaSyDcyPkDBHE2HaNe9Hn_HZgu-RhBywWLSl0"  # Replace this securely (e.g., via .env)
 
-# === Streamlit UI ===
 st.set_page_config(page_title="🧠 Intelligent Paper Assistant", layout="wide")
 st.title("📄 Intelligent Paper Assistant")
 
@@ -29,7 +34,6 @@ def extract_pdf_elements(pdf_path):
         combine_text_under_n_chars=2000,
         new_after_n_chars=6000,
     )
-
     texts, tables = [], []
     for chunk in chunks:
         if "Table" in str(type(chunk)):
@@ -65,6 +69,34 @@ def summarize_images(model, images_b64):
         chain = model | StrOutputParser()
         summaries.append(chain.invoke(message))
     return summaries
+
+def docset(docs, summaries, key="doc_id"):
+    ids = [str(uuid.uuid4()) for _ in docs]
+    docs_meta = [Document(page_content=s, metadata={key: ids[i]}) for i, s in enumerate(summaries)]
+    return docs_meta, list(zip(ids, docs))
+
+def parse_docs(docs):
+    b64, text = [], []
+    for doc in docs:
+        try:
+            base64.b64decode(doc)
+            b64.append(doc)
+        except Exception:
+            text.append(doc)
+    return {"images": b64, "texts": text}
+
+def build_prompt(kwargs):
+    ctx = kwargs["context"]
+    question = kwargs["question"]
+    context_text = "".join([x.text for x in ctx["texts"]])
+    prompt = [{"type": "text", "text": f"""
+    Answer the question using this context (text + table + image summaries):
+    Context: {context_text}
+    Question: {question}
+    """}]
+    for img in ctx["images"]:
+        prompt.append({"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{img}"}})
+    return [HumanMessage(content=prompt)]
 
 if uploaded_file:
     with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp_file:
@@ -105,4 +137,45 @@ if uploaded_file:
     for summary in image_summaries[:3]:
         st.markdown(f"- {summary}")
 
+    # === Embed, store, and retrieve ===
+    embedding_function = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
+    summary_text_docs, text_pairs = docset(texts, text_summaries)
+    summary_table_docs, table_pairs = docset(tables, table_summaries)
+    summary_image_docs, image_pairs = docset(images, image_summaries)
+
+    vectorstore = DocArrayInMemorySearch.from_documents(summary_text_docs, embedding=embedding_function)
+    vectorstore.add_documents(summary_table_docs)
+    vectorstore.add_documents(summary_image_docs)
+
+    store = InMemoryStore()
+    store.mset(text_pairs + table_pairs + image_pairs)
+
+    retriever = MultiVectorRetriever(
+        vectorstore=vectorstore,
+        docstore=store,
+        id_key="doc_id"
+    )
+
+    chain_with_sources = (
+        {
+            "context": retriever | RunnableLambda(parse_docs),
+            "question": RunnablePassthrough(),
+        }
+        | RunnablePassthrough().assign(
+            response=(RunnableLambda(build_prompt) | model | StrOutputParser())
+        )
+    )
+
+    user_query = st.text_input("🔍 Ask a question about the paper:")
+    if user_query:
+        with st.spinner("🤖 Thinking..."):
+            result = chain_with_sources.invoke(user_query)
+            st.subheader("🧠 Answer")
+            st.write(result["response"])
+
+            with st.expander("🧾 Context used"):
+                for ctx in result["context"]["texts"][:3]:
+                    st.markdown(ctx.text[:500] + "...")
+    
     os.remove(temp_pdf_path)
+
