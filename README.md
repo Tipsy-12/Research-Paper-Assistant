@@ -66,14 +66,20 @@ Please make sure your .env is set, and PDF_PATH in config.py points to your targ
 
 ### Tech Stack
 Component	Library/Tool
+
 LLM	Gemini 1.5 Flash via langchain-google-genai
+
 OCR + Layout	Unstructured + Tesseract + Poppler
+
 Vector Search	DocArrayInMemorySearch + LangChain
+
 Embeddings	GoogleGenerativeAIEmbeddings
+
 PDF Processing	pdf2image, pypdf, unstructured
+
 Summarisation	LangChain PromptTemplates + Gemini
 
-### 📁 Project Structure
+ 📁 Project Structure
 ```bash
 
 ├── main.py
