@@ -18,8 +18,9 @@ if uploaded_file:
     st.success("✅ PDF uploaded successfully!")
 
     # Extract elements from PDF
-    with st.spinner("⏳ Extracting content..."):
-        texts, tables, images = pdf_loader.partition_pdf(temp_pdf_path)
+    result = pdf_loader.partition_pdf(temp_pdf_path)
+    print("partition_pdf result type:", type(result))
+    print("partition_pdf result:", result)
 
     st.write("### 📄 Raw Extracted Content")
     st.write("**Text Chunks:**", len(texts))
