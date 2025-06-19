@@ -5,11 +5,11 @@ This Colab/CLI-based tool uses a multimodal RAG pipeline to summarize and extrac
 ---
 
 ### ✅ Repository Includes
-📄 A complete Colab/CLI pipeline
-📂 Any academic paper (PDF) with tables, figures, images
-🧰 Utility scripts for loading, summarizing, and embedding
-📦 All required libraries via requirements.txt
-🔑 Uses Google’s Gemini Flash (via LangChain) for generation
+📄 A complete Colab/CLI pipeline  
+📂 Any academic paper (PDF) with tables, figures, images  
+🧰 Utility scripts for loading, summarizing, and embedding  
+📦 All required libraries via requirements.txt  
+🔑 Uses Google’s Gemini Flash (via LangChain) for generation  
 
 ---
 
