@@ -13,9 +13,9 @@ An AI-powered assistant that reads, analyzes, and summarizes research papers inc
 
 ---
 
-## 🚀 Setup Instructions
+## Setup Instructions
 
-### 1. ✅ Clone the Repo
+### 1. Clone the Repo
 
 ```bash
 git clone https://github.com/Tipsy-12/Intelligent-Paper-Assistant.git
@@ -23,7 +23,7 @@ cd Intelligent-Paper-Assistant
 ```
 
 
-### 2. ✅ Create and activate a virtual environment
+### 2. Create and activate a virtual environment
 
 
 ```bash
@@ -31,7 +31,7 @@ python -m venv venv
 source venv/bin/activate  # On Windows use venv\Scripts\activate
 ```
 
-### 3. ✅ Install Python dependencies
+### 3. Install Python dependencies
 ```bash
 pip install -r requirements.txt
 ```
@@ -42,7 +42,7 @@ GOOGLE_API_KEY=your_gemini_api_key_here
 LANGCHAIN_TRACING_V2=false
 ```
 
-###⚙️ System Dependencies (IMPORTANT)
+### ⚙️ System Dependencies
 You’ll need the following tools installed on your system:
 
 📦 Linux / Ubuntu / Codespaces:
@@ -58,13 +58,13 @@ tesseract-ocr: for OCR capabilities in unstructured.
 
 libgl1: required by opencv-python.
 
-🧪 Run the App
+### Run the App
 ```bash
 python main.py
 ```
 Please make sure your .env is set, and PDF_PATH in config.py points to your target PDF.
 
-🧰 Tech Stack
+### Tech Stack
 Component	Library/Tool
 LLM	Gemini 1.5 Flash via langchain-google-genai
 OCR + Layout	Unstructured + Tesseract + Poppler
@@ -73,7 +73,7 @@ Embeddings	GoogleGenerativeAIEmbeddings
 PDF Processing	pdf2image, pypdf, unstructured
 Summarisation	LangChain PromptTemplates + Gemini
 
-📁 Project Structure
+### 📁 Project Structure
 ```bash
 
 ├── main.py
