@@ -19,33 +19,39 @@ An AI-powered assistant that reads, analyzes, and summarizes research papers inc
 
 ```bash
 git clone https://github.com/Tipsy-12/Intelligent-Paper-Assistant.git
-cd Intelligent-Paper-Assistant ```bash
+cd Intelligent-Paper-Assistant
+```
 
 
 ### 2. ✅ Create and activate a virtual environment
 
 
+```bash
 python -m venv venv
 source venv/bin/activate  # On Windows use venv\Scripts\activate
+```
 
 ### 3. ✅ Install Python dependencies
+```bash
 pip install -r requirements.txt
+```
 
 ### 4. Set up environment variables
+```bash
 GOOGLE_API_KEY=your_gemini_api_key_here
 LANGCHAIN_TRACING_V2=false
+```
 
 ###⚙️ System Dependencies (IMPORTANT)
 You’ll need the following tools installed on your system:
 
 📦 Linux / Ubuntu / Codespaces:
-bash
-Copy
-Edit
+```bash
 sudo apt update && sudo apt install -y \
     poppler-utils \
     tesseract-ocr \
     libgl1
+```
 poppler-utils: for pdf2image to convert PDFs to images.
 
 tesseract-ocr: for OCR capabilities in unstructured.
@@ -53,11 +59,10 @@ tesseract-ocr: for OCR capabilities in unstructured.
 libgl1: required by opencv-python.
 
 🧪 Run the App
-bash
-Copy
-Edit
+```bash
 python main.py
-Make sure your .env is set, and PDF_PATH in config.py points to your target PDF.
+```
+Please make sure your .env is set, and PDF_PATH in config.py points to your target PDF.
 
 🧰 Tech Stack
 Component	Library/Tool
@@ -66,12 +71,11 @@ OCR + Layout	Unstructured + Tesseract + Poppler
 Vector Search	DocArrayInMemorySearch + LangChain
 Embeddings	GoogleGenerativeAIEmbeddings
 PDF Processing	pdf2image, pypdf, unstructured
-Summarization	LangChain PromptTemplates + Gemini
+Summarisation	LangChain PromptTemplates + Gemini
 
 📁 Project Structure
-bash
-Copy
-Edit
+```bash
+
 ├── main.py
 ├── config.py
 ├── requirements.txt
