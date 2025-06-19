@@ -19,7 +19,8 @@ An AI-powered assistant that reads, analyzes, and summarizes research papers inc
 
 ```bash
 git clone https://github.com/Tipsy-12/Intelligent-Paper-Assistant.git
-cd Intelligent-Paper-Assistant ```
+cd Intelligent-Paper-Assistant ```bash
+
 
 ### 2. ✅ Create and activate a virtual environment
 
