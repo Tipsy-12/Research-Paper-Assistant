@@ -48,7 +48,7 @@ The assistant extracts relevant content from both text and images (e.g., equatio
 ---
 
 ### ⚙️ How to Use (Colab)
-Open the notebook in Google Colab
+Open the notebook MMRAG.ipynb in Google Colab
 
 Upload the research paper PDF
 
