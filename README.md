@@ -1,6 +1,6 @@
 #  Research Paper Assistant
 
-This Colab/CLI-based tool uses a multimodal RAG pipeline to summarize and extract insights from academic PDFs — including text, tables, and images. Powered by LangChain, Unstructured, Gemini 1.5 Flash, and DocArray, it enables intelligent understanding of research papers in one go.
+This tool uses a multimodal RAG pipeline to summarize and extract insights from academic PDFs — including text, tables, and images. Powered by LangChain, Unstructured, Gemini 1.5 Flash, and DocArray, it enables intelligent understanding of research papers in one go.
 
 ---
 
@@ -48,13 +48,11 @@ The assistant extracts relevant content from text and images (e.g., equations, g
 ---
 
 ### ⚙️ How to Use (Colab)
-Open the notebook MMRAG.ipynb in Google Colab
-
-Upload the research paper PDF
-
-Add your Gemini API key
-
-Run all cells in order.
+1. Open the notebook MMRAG.ipynb in Google Colab
+2. Upload the research paper PDF
+3. Add your Gemini API key
+4. Enter your query in the space provided   
+5. Run all cells in order.
 
 ---
 
@@ -93,8 +91,6 @@ tesseract-ocr: for OCR capabilities in unstructured.
 libgl1: required by opencv-python.
 
 ---
-
-
 
  ### 📁 Project Structure
 ```bash
