@@ -108,10 +108,8 @@ libgl1: required by opencv-python.
 │   ├── summarizer.py
 │   ├── image_utils.py
 │   ├── vector_store.py
-├── .gitignore
-
-
-
+├── app.py
+```
 
 
 
