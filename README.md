@@ -43,7 +43,7 @@ This Colab/CLI-based tool uses a multimodal RAG pipeline to summarize and extrac
 ### Example Use Case
 "What is positional encoding?"
 
-The assistant extracts relevant content from both text and images (e.g., equations, graphs), providing a concise, accurate summary using Gemini Flash.
+The assistant extracts relevant content from text and images (e.g., equations, graphs), providing an accurate summary using Gemini Flash.
 
 ---
 
