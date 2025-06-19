@@ -15,13 +15,13 @@ This Colab/CLI-based tool uses a multimodal RAG pipeline to summarize and extrac
 
 ## ✨ Features
 
-📝 Accepts research papers in PDF format
-📊 Extracts text, tables, and images
-🧠 Summarises each component using Gemini 1.5 Flash
-🔍 Retrieves content chunks via DocArrayInMemorySearch
-💬 Answers user queries with context-aware RAG
-📸 Supports image captioning from figures/diagrams
-⚡ Efficient multimodal handling using Unstructured
+📝 Accepts research papers in PDF format  
+📊 Extracts text, tables, and images  
+🧠 Summarises each component using Gemini 1.5 Flash  
+🔍 Retrieves content chunks via DocArrayInMemorySearch  
+💬 Answers user queries with context-aware RAG  
+📸 Supports image captioning from figures/diagrams  
+⚡ Efficient multimodal handling using Unstructured  
 
 ---
 
@@ -47,9 +47,18 @@ The assistant extracts relevant content from both text and images (e.g., equatio
 
 ---
 
-## Setup Instructions
+### ⚙️ How to Use (Colab)
+Open the notebook in Google Colab
 
+Upload the research paper PDF
 
+Add your Gemini API key
+
+Run all cells in order.
+
+---
+
+## Setup Instructions(Local)
 ```bash
 
 # Clone the repository
@@ -82,13 +91,6 @@ poppler-utils: for pdf2image to convert PDFs to images.
 tesseract-ocr: for OCR capabilities in unstructured.
 
 libgl1: required by opencv-python.
-
----
-### Run the App
-```bash
-python main.py
-```
-Please make sure your .env is set, and PDF_PATH in config.py points to your target PDF.
 
 ---
 
