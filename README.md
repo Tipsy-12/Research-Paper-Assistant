@@ -13,7 +13,7 @@ This tool uses a multimodal RAG pipeline to summarize and extract insights from 
 
 ---
 
-## ✨ Features
+### ✨ Features
 
 📝 Accepts research papers in PDF format  
 📊 Extracts text, tables, and images  
@@ -25,7 +25,7 @@ This tool uses a multimodal RAG pipeline to summarize and extract insights from 
 
 ---
 
-##  Tech Stack
+###  Tech Stack
 
 | Component         | Tool / Library                          |
 |-------------------|------------------------------------------|
@@ -56,7 +56,7 @@ The assistant extracts relevant content from text and images (e.g., equations, g
 
 ---
 
-## Setup Instructions(Local)
+### Setup Instructions(Local)
 ```bash
 
 # Clone the repository
@@ -73,6 +73,8 @@ pip install -r requirements.txt
 GOOGLE_API_KEY=your_gemini_api_key_here
 LANGCHAIN_TRACING_V2=false
 ```
+
+---
 
 ### ⚙️ System Dependencies
 You’ll need the following tools installed on your system:
