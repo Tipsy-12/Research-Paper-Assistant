@@ -56,7 +56,7 @@ The assistant extracts relevant content from text and images (e.g., equations, g
 
 ---
 
-### Setup Instructions(Local)
+### Setup Instructions (Local)
 ```bash
 
 # Clone the repository
