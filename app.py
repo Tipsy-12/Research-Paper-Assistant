@@ -14,8 +14,8 @@ from langchain.storage import InMemoryStore
 from langchain.retrievers.multi_vector import MultiVectorRetriever
 from unstructured.partition.pdf import partition_pdf
 
-# === Config ===
-os.environ["GOOGLE_API_KEY"] = "AIzaSyCo82usakkkD0u_Y4DMh8ouw46oLsZgevM"  # Replace this securely (e.g., via .env)
+ # Replace this securely (e.g., via .env)
+os.environ["GOOGLE_API_KEY"] = "AIzaSyC5-KL5y09UdsWpLVWnTFKfh49kMfU_J2s"  # Use dotenv for security 
 
 st.set_page_config(page_title="🧠 Intelligent Paper Assistant", layout="wide")
 st.title("📄 Intelligent Paper Assistant")
@@ -137,7 +137,6 @@ if uploaded_file:
     for summary in image_summaries[:3]:
         st.markdown(f"- {summary}")
 
-    # === Embed, store, and retrieve ===
     embedding_function = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
     summary_text_docs, text_pairs = docset(texts, text_summaries)
     summary_table_docs, table_pairs = docset(tables, table_summaries)
@@ -176,6 +175,11 @@ if uploaded_file:
             with st.expander("🧾 Context used"):
                 for ctx in result["context"]["texts"][:3]:
                     st.markdown(ctx.text[:500] + "...")
-    
+                if result["context"]["images"]:
+                    st.subheader("🖼️ Images Used in Context")
+                    for img_b64 in result["context"]["images"]:
+                        st.image(f"data:image/jpeg;base64,{img_b64}", use_column_width=True)
+
     os.remove(temp_pdf_path)
+
 
