@@ -15,7 +15,7 @@ from langchain.retrievers.multi_vector import MultiVectorRetriever
 from unstructured.partition.pdf import partition_pdf
 
 # === Config ===
-os.environ["GOOGLE_API_KEY"] = "AIzaSyDcyPkDBHE2HaNe9Hn_HZgu-RhBywWLSl0"  # Replace this securely (e.g., via .env)
+os.environ["GOOGLE_API_KEY"] = "AIzaSyCo82usakkkD0u_Y4DMh8ouw46oLsZgevM"  # Replace this securely (e.g., via .env)
 
 st.set_page_config(page_title="🧠 Intelligent Paper Assistant", layout="wide")
 st.title("📄 Intelligent Paper Assistant")
